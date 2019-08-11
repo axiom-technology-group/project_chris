@@ -1,4 +1,5 @@
-## 此项目包含爬虫部分和数据分析部分，webcrawler为爬虫部分，Sentiment为汽车评论数据分析部分
+## 此项目包含爬虫部分和数据分析部分，webcrawler为爬虫部分，其余为分析部分。
+### NewsTopicAnalysis为TEXTCNN预测新闻主题，sentiment_CNN为汽车评论情感分析，topicanalysis为基于TEXTCNN汽车评论主题预测，paddlehub为利用paddlepaddle框架以及百度自建数据集进行文本分类，kashgari为迁移学习代码，keras_pretrained_bert为利用keras的预训练bert模型进行主题预测，修改自https://github.com/real-brilliant/bert_chinese_pytorch
 + 爬虫使用了scrapy框架，配合selenium、随机UA/IP池等反爬手段，爬取了51auto.com等十余个汽车网站，并将数据存至数据库，已经将命令写入main.py函数，运行时只需要在里面第三个参数表明运行哪个爬虫，然后run一下即可，无需在命令行中多次输入
 ##  数据分析目前运用jieba分词和Word2Vector对文本进行预处理，然后进行情感分析，采用算法进行情感预测，同时做了关键词提取等工作,。
 + 深度学习采用了CNN/BERT/BILSTM等算法进行文本分类任务，分别使用tensorflow以及百度paddlehub进行预测，在百度自建数据集的预训练模型中效果最好。
