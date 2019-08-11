@@ -1,0 +1,829 @@
+{
+  "config": {
+    "hyper_parameters": {
+      "conv1d_layer": {
+        "filters": 128,
+        "kernel_size": 5,
+        "activation": "relu"
+      },
+      "max_pool_layer": {},
+      "dense_layer": {
+        "units": 64,
+        "activation": "relu"
+      },
+      "activation_layer": {
+        "activation": "softmax"
+      }
+    }
+  },
+  "tf_model": {
+    "class_name": "Model",
+    "config": {
+      "name": "model_1",
+      "layers": [
+        {
+          "name": "input",
+          "class_name": "InputLayer",
+          "config": {
+            "batch_input_shape": [
+              null,
+              21
+            ],
+            "dtype": "float32",
+            "sparse": false,
+            "name": "input"
+          },
+          "inbound_nodes": []
+        },
+        {
+          "name": "layer_embedding",
+          "class_name": "Embedding",
+          "config": {
+            "name": "layer_embedding",
+            "trainable": true,
+            "batch_input_shape": [
+              null,
+              null
+            ],
+            "dtype": "float32",
+            "input_dim": 465,
+            "output_dim": 100,
+            "embeddings_initializer": {
+              "class_name": "RandomUniform",
+              "config": {
+                "minval": -0.05,
+                "maxval": 0.05,
+                "seed": null,
+                "dtype": "float32"
+              }
+            },
+            "embeddings_regularizer": null,
+            "activity_regularizer": null,
+            "embeddings_constraint": null,
+            "mask_zero": false,
+            "input_length": null
+          },
+          "inbound_nodes": [
+            [
+              [
+                "input",
+                0,
+                0,
+                {}
+              ]
+            ]
+          ]
+        },
+        {
+          "name": "conv1d",
+          "class_name": "Conv1D",
+          "config": {
+            "name": "conv1d",
+            "trainable": true,
+            "dtype": "float32",
+            "filters": 128,
+            "kernel_size": [
+              5
+            ],
+            "strides": [
+              1
+            ],
+            "padding": "valid",
+            "data_format": "channels_last",
+            "dilation_rate": [
+              1
+            ],
+            "activation": "relu",
+            "use_bias": true,
+            "kernel_initializer": {
+              "class_name": "GlorotUniform",
+              "config": {
+                "seed": null,
+                "dtype": "float32"
+              }
+            },
+            "bias_initializer": {
+              "class_name": "Zeros",
+              "config": {
+                "dtype": "float32"
+              }
+            },
+            "kernel_regularizer": null,
+            "bias_regularizer": null,
+            "activity_regularizer": null,
+            "kernel_constraint": null,
+            "bias_constraint": null
+          },
+          "inbound_nodes": [
+            [
+              [
+                "layer_embedding",
+                0,
+                0,
+                {}
+              ]
+            ]
+          ]
+        },
+        {
+          "name": "global_max_pooling1d",
+          "class_name": "GlobalMaxPooling1D",
+          "config": {
+            "name": "global_max_pooling1d",
+            "trainable": true,
+            "dtype": "float32",
+            "data_format": "channels_last"
+          },
+          "inbound_nodes": [
+            [
+              [
+                "conv1d",
+                0,
+                0,
+                {}
+              ]
+            ]
+          ]
+        },
+        {
+          "name": "dense",
+          "class_name": "Dense",
+          "config": {
+            "name": "dense",
+            "trainable": true,
+            "dtype": "float32",
+            "units": 64,
+            "activation": "relu",
+            "use_bias": true,
+            "kernel_initializer": {
+              "class_name": "GlorotUniform",
+              "config": {
+                "seed": null,
+                "dtype": "float32"
+              }
+            },
+            "bias_initializer": {
+              "class_name": "Zeros",
+              "config": {
+                "dtype": "float32"
+              }
+            },
+            "kernel_regularizer": null,
+            "bias_regularizer": null,
+            "activity_regularizer": null,
+            "kernel_constraint": null,
+            "bias_constraint": null
+          },
+          "inbound_nodes": [
+            [
+              [
+                "global_max_pooling1d",
+                0,
+                0,
+                {}
+              ]
+            ]
+          ]
+        },
+        {
+          "name": "dense_1",
+          "class_name": "Dense",
+          "config": {
+            "name": "dense_1",
+            "trainable": true,
+            "dtype": "float32",
+            "units": 5,
+            "activation": "softmax",
+            "use_bias": true,
+            "kernel_initializer": {
+              "class_name": "GlorotUniform",
+              "config": {
+                "seed": null,
+                "dtype": "float32"
+              }
+            },
+            "bias_initializer": {
+              "class_name": "Zeros",
+              "config": {
+                "dtype": "float32"
+              }
+            },
+            "kernel_regularizer": null,
+            "bias_regularizer": null,
+            "activity_regularizer": null,
+            "kernel_constraint": null,
+            "bias_constraint": null
+          },
+          "inbound_nodes": [
+            [
+              [
+                "dense",
+                0,
+                0,
+                {}
+              ]
+            ]
+          ]
+        }
+      ],
+      "input_layers": [
+        [
+          "input",
+          0,
+          0
+        ]
+      ],
+      "output_layers": [
+        [
+          "dense_1",
+          0,
+          0
+        ]
+      ]
+    },
+    "keras_version": "2.2.4-tf",
+    "backend": "tensorflow"
+  },
+  "embedding": {
+    "processor": {
+      "class_name": "ClassificationProcessor",
+      "config": {
+        "label2idx": {
+          "business": 0,
+          "education": 1,
+          "life-style": 2,
+          "politics": 3,
+          "tech": 4
+        },
+        "token2idx": {
+          "<PAD>": 0,
+          "<UNK>": 1,
+          "<BOS>": 2,
+          "<EOS>": 3,
+          " ": 4,
+          "to": 5,
+          "Beijing": 6,
+          "in": 7,
+          "'": 8,
+          "-": 9,
+          "China": 10,
+          "of": 11,
+          "for": 12,
+          "s": 13,
+          "on": 14,
+          "Chinese": 15,
+          ":": 16,
+          "the": 17,
+          "at": 18,
+          "new": 19,
+          "US": 20,
+          "a": 21,
+          "and": 22,
+          "with": 23,
+          "up": 24,
+          "New": 25,
+          "trade": 26,
+          "10": 27,
+          "Xiongan": 28,
+          "high": 29,
+          "more": 30,
+          "Top": 31,
+          "be": 32,
+          "cultural": 33,
+          "set": 34,
+          "from": 35,
+          "cities": 36,
+          "opens": 37,
+          "culture": 38,
+          "expo": 39,
+          "Xi": 40,
+          "first": 41,
+          "service": 42,
+          "students": 43,
+          "sports": 44,
+          "as": 45,
+          "will": 46,
+          "market": 47,
+          "development": 48,
+          "by": 49,
+          "boost": 50,
+          "school": 51,
+          "says": 52,
+          "air": 53,
+          "show": 54,
+          "Festival": 55,
+          "industry": 56,
+          "people": 57,
+          "life": 58,
+          "off": 59,
+          "travel": 60,
+          "center": 61,
+          "speed": 62,
+          "over": 63,
+          "growth": 64,
+          "pollution": 65,
+          "into": 66,
+          "children": 67,
+          "start": 68,
+          "internet": 69,
+          "tourism": 70,
+          "A": 71,
+          "Winter": 72,
+          "(": 73,
+          ")": 74,
+          "Tianjin": 75,
+          "2022": 76,
+          "year": 77,
+          "sector": 78,
+          "airport": 79,
+          "Road": 80,
+          "railway": 81,
+          "held": 82,
+          "What": 83,
+          "capital": 84,
+          "2017": 85,
+          "Hebei": 86,
+          "festival": 87,
+          "Shanghai": 88,
+          "is": 89,
+          "online": 90,
+          "World": 91,
+          "Year": 92,
+          "world": 93,
+          "future": 94,
+          "business": 95,
+          "exhibition": 96,
+          "foreign": 97,
+          "launch": 98,
+          "global": 99,
+          "ties": 100,
+          "train": 101,
+          "The": 102,
+          "rail": 103,
+          "rules": 104,
+          "success": 105,
+          "winter": 106,
+          "its": 107,
+          "Foreign": 108,
+          "companies": 109,
+          "say": 110,
+          "tech": 111,
+          "out": 112,
+          "education": 113,
+          "art": 114,
+          "cooperation": 115,
+          "horticultural": 116,
+          "firms": 117,
+          "plans": 118,
+          "2019": 119,
+          "Palace": 120,
+          "key": 121,
+          "Olympics": 122,
+          "economy": 123,
+          "Students": 124,
+          "tourists": 125,
+          "quality": 126,
+          "gets": 127,
+          "2018": 128,
+          "Day": 129,
+          "after": 130,
+          "highlights": 131,
+          "subway": 132,
+          "food": 133,
+          "holiday": 134,
+          "make": 135,
+          "Sino": 136,
+          "holds": 137,
+          "bullet": 138,
+          "Museum": 139,
+          "improve": 140,
+          "AI": 141,
+          "look": 142,
+          "years": 143,
+          "talks": 144,
+          "\u9686\u7089": 145,
+          "shows": 146,
+          "city": 147,
+          "Games": 148,
+          "More": 149,
+          "transport": 150,
+          "debut": 151,
+          "car": 152,
+          "music": 153,
+          "some": 154,
+          "program": 155,
+          "help": 156,
+          "helps": 157,
+          "Summer": 158,
+          "most": 159,
+          "Spring": 160,
+          "construction": 161,
+          "Nation": 162,
+          "Li": 163,
+          "Capital": 164,
+          "promote": 165,
+          "top": 166,
+          "trains": 167,
+          "go": 168,
+          "housing": 169,
+          "Internet": 170,
+          "Expo": 171,
+          "their": 172,
+          "Report": 173,
+          "countries": 174,
+          "eyes": 175,
+          "drive": 176,
+          "experts": 177,
+          "see": 178,
+          "protect": 179,
+          "schools": 180,
+          "stage": 181,
+          "Area": 182,
+          "firm": 183,
+          "launches": 184,
+          "take": 185,
+          "promotes": 186,
+          "dance": 187,
+          "two": 188,
+          "TV": 189,
+          "big": 190,
+          "economic": 191,
+          "tour": 192,
+          "Davos": 193,
+          "May": 194,
+          "finds": 195,
+          "road": 196,
+          "back": 197,
+          "CIIE": 198,
+          "offers": 199,
+          "starts": 200,
+          "open": 201,
+          "Ministry": 202,
+          "$": 203,
+          "bring": 204,
+          "offer": 205,
+          "mainland": 206,
+          "Fuxing": 207,
+          "rural": 208,
+          "Great": 209,
+          "region": 210,
+          "begins": 211,
+          "international": 212,
+          "Forum": 213,
+          "court": 214,
+          "platform": 215,
+          "overseas": 216,
+          "official": 217,
+          "this": 218,
+          "plan": 219,
+          "hopes": 220,
+          "opera": 221,
+          "data": 222,
+          "track": 223,
+          "sharing": 224,
+          "build": 225,
+          "cars": 226,
+          "progress": 227,
+          "may": 228,
+          "driving": 229,
+          "Conference": 230,
+          "area": 231,
+          "through": 232,
+          "behind": 233,
+          "cases": 234,
+          "experience": 235,
+          "releases": 236,
+          "classic": 237,
+          "Olympic": 238,
+          "builds": 239,
+          "Exhibition": 240,
+          "opening": 241,
+          "end": 242,
+          "not": 243,
+          "ease": 244,
+          "kindergarten": 245,
+          "access": 246,
+          "find": 247,
+          "residents": 248,
+          "system": 249,
+          "role": 250,
+          "study": 251,
+          "no": 252,
+          "man": 253,
+          "link": 254,
+          "seen": 255,
+          "musical": 256,
+          "5G": 257,
+          "training": 258,
+          "teachers": 259,
+          "forum": 260,
+          "looks": 261,
+          "Wall": 262,
+          "love": 263,
+          "City": 264,
+          "lives": 265,
+          "5": 266,
+          "being": 267,
+          "Innovation": 268,
+          "21": 269,
+          "Belt": 270,
+          "growing": 271,
+          "President": 272,
+          "Experts": 273,
+          "could": 274,
+          "visit": 275,
+          "nation": 276,
+          "major": 277,
+          "meets": 278,
+          "president": 279,
+          "Silk": 280,
+          "regions": 281,
+          "era": 282,
+          "gives": 283,
+          "urges": 284,
+          "arts": 285,
+          "University": 286,
+          "Peking": 287,
+          "In": 288,
+          "steps": 289,
+          "horticulture": 290,
+          "child": 291,
+          "Culture": 292,
+          "hold": 293,
+          "grow": 294,
+          "chief": 295,
+          "Young": 296,
+          "self": 297,
+          "meet": 298,
+          "report": 299,
+          "get": 300,
+          "meeting": 301,
+          "sees": 302,
+          "health": 303,
+          "trips": 304,
+          "time": 305,
+          "ahead": 306,
+          "win": 307,
+          "flights": 308,
+          "have": 309,
+          "than": 310,
+          "turn": 311,
+          "an": 312,
+          "services": 313,
+          "changes": 314,
+          "Air": 315,
+          "African": 316,
+          "traditional": 317,
+          "embrace": 318,
+          "smart": 319,
+          "Documentary": 320,
+          "targets": 321,
+          "against": 322,
+          "operation": 323,
+          "use": 324,
+          "visitors": 325,
+          "visa": 326,
+          "hit": 327,
+          "under": 328,
+          "innovation": 329,
+          "all": 330,
+          "reform": 331,
+          "40": 332,
+          "focus": 333,
+          "measures": 334,
+          "abuse": 335,
+          "3": 336,
+          "intercity": 337,
+          "property": 338,
+          "rights": 339,
+          "network": 340,
+          "amid": 341,
+          "times": 342,
+          "Survey": 343,
+          "mark": 344,
+          "plays": 345,
+          "visits": 346,
+          "marks": 347,
+          "tariff": 348,
+          "WTO": 349,
+          "trial": 350,
+          "French": 351,
+          "regional": 352,
+          "preschool": 353,
+          "safety": 354,
+          "public": 355,
+          "Russia": 356,
+          "ride": 357,
+          "about": 358,
+          "gears": 359,
+          "daily": 360,
+          "International": 361,
+          "should": 362,
+          "Royal": 363,
+          "fair": 364,
+          "strengthen": 365,
+          "Yanqing": 366,
+          "has": 367,
+          "can": 368,
+          "heritage": 369,
+          "creativity": 370,
+          "travelers": 371,
+          "April": 372,
+          "relations": 373,
+          "awards": 374,
+          "work": 375,
+          "areas": 376,
+          "clean": 377,
+          "Trump": 378,
+          "healthcare": 379,
+          "I": 380,
+          "15": 381,
+          "fresh": 382,
+          "Xinjiang": 383,
+          "Tech": 384,
+          ".": 385,
+          "Tsinghua": 386,
+          "day": 387,
+          "Two": 388,
+          "case": 389,
+          "technologies": 390,
+          "long": 391,
+          "are": 392,
+          "Food": 393,
+          "brings": 394,
+          "Theater": 395,
+          "further": 396,
+          "positive": 397,
+          "modern": 398,
+          "kicks": 399,
+          "campaign": 400,
+          "This": 401,
+          "pay": 402,
+          "tariffs": 403,
+          "An": 404,
+          "girl": 405,
+          "continues": 406,
+          "interests": 407,
+          "premier": 408,
+          "Court": 409,
+          "Online": 410,
+          "shared": 411,
+          "links": 412,
+          "force": 413,
+          "fastest": 414,
+          "rush": 415,
+          "Dalian": 416,
+          "Children": 417,
+          "tap": 418,
+          "app": 419,
+          "push": 420,
+          "moves": 421,
+          "old": 422,
+          "ready": 423,
+          "businesses": 424,
+          "aims": 425,
+          "extra": 426,
+          "Opera": 427,
+          "workers": 428,
+          "home": 429,
+          "Hungarian": 430,
+          "South": 431,
+          "24": 432,
+          "down": 433,
+          "between": 434,
+          "translation": 435,
+          "best": 436,
+          "smoking": 437,
+          "&": 438,
+          "opportunities": 439,
+          "competition": 440,
+          "across": 441,
+          "expand": 442,
+          "event": 443,
+          "From": 444,
+          "income": 445,
+          "power": 446,
+          "attract": 447,
+          "spending": 448,
+          "shine": 449,
+          "aim": 450,
+          "rises": 451,
+          "Hong": 452,
+          "Kong": 453,
+          "raise": 454,
+          "\u62e2": 455,
+          "\u9885": 456,
+          "prospects": 457,
+          "centers": 458,
+          "fight": 459,
+          "model": 460,
+          "based": 461,
+          "store": 462,
+          "beauty": 463,
+          "staged": 464
+        },
+        "token_pad": "<PAD>",
+        "token_unk": "<UNK>",
+        "token_bos": "<BOS>",
+        "token_eos": "<EOS>",
+        "dataset_info": {
+          "RECOMMEND_LEN": 21,
+          "token_count": 465,
+          "label_count": 5
+        },
+        "add_bos_eos": false,
+        "sequence_length": 21
+      },
+      "module": "kashgari.processors.classification_processor",
+      "task": "classification",
+      "multi_label": false
+    },
+    "class_name": "BareEmbedding",
+    "module": "kashgari.embeddings.bare_embedding",
+    "config": {
+      "sequence_length": 21,
+      "embedding_size": 100
+    },
+    "embed_model": {
+      "class_name": "Model",
+      "config": {
+        "name": "model",
+        "layers": [
+          {
+            "name": "input",
+            "class_name": "InputLayer",
+            "config": {
+              "batch_input_shape": [
+                null,
+                21
+              ],
+              "dtype": "float32",
+              "sparse": false,
+              "name": "input"
+            },
+            "inbound_nodes": []
+          },
+          {
+            "name": "layer_embedding",
+            "class_name": "Embedding",
+            "config": {
+              "name": "layer_embedding",
+              "trainable": true,
+              "batch_input_shape": [
+                null,
+                null
+              ],
+              "dtype": "float32",
+              "input_dim": 465,
+              "output_dim": 100,
+              "embeddings_initializer": {
+                "class_name": "RandomUniform",
+                "config": {
+                  "minval": -0.05,
+                  "maxval": 0.05,
+                  "seed": null,
+                  "dtype": "float32"
+                }
+              },
+              "embeddings_regularizer": null,
+              "activity_regularizer": null,
+              "embeddings_constraint": null,
+              "mask_zero": false,
+              "input_length": null
+            },
+            "inbound_nodes": [
+              [
+                [
+                  "input",
+                  0,
+                  0,
+                  {}
+                ]
+              ]
+            ]
+          }
+        ],
+        "input_layers": [
+          [
+            "input",
+            0,
+            0
+          ]
+        ],
+        "output_layers": [
+          [
+            "layer_embedding",
+            0,
+            0
+          ]
+        ]
+      },
+      "keras_version": "2.2.4-tf",
+      "backend": "tensorflow"
+    }
+  },
+  "class_name": "CNN_Model",
+  "module": "kashgari.tasks.classification.models",
+  "tf_version": "1.14.0",
+  "kashgari_version": "1.14.0"
+}
