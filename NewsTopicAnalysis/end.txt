@@ -1,0 +1,19 @@
+Precision, Recall and F1-Score...
+              precision    recall  f1-score   support
+
+    business       0.24      0.40      0.30        67
+    politics       0.34      0.26      0.29        97
+        tech       0.43      0.10      0.16        30
+   education       0.14      0.07      0.09        30
+  life-style       0.35      0.41      0.38        90
+
+    accuracy                           0.30       314
+   macro avg       0.30      0.25      0.24       314
+weighted avg       0.31      0.30      0.29       314
+
+Confusion Matrix...
+[[27 21  1  1 17]
+ [34 25  1  4 33]
+ [12  6  3  2  7]
+ [ 9  7  1  2 11]
+ [32 15  1  5 37]]
