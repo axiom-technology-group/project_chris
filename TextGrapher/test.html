@@ -1,0 +1,103 @@
+汉
+    <html>
+    <head>
+      <script type="text/javascript" src="VIS/dist/vis.js"></script>
+      <link href="VIS/dist/vis.css" rel="stylesheet" type="text/css">
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    </head>
+    <body>
+
+    <div id="VIS_draw"></div>
+
+    <script type="text/javascript">
+      var nodes = [{'group': 'Event', 'id': 8, 'label': '施工'}, {'group': 'Event', 'id': 5, 'label': '关键词'}, {'group': 'Event', 'id': 6, 'label': '分段'}, {'group': 'Event', 'id': 10, 'label': '手段'}, {'group': 'Event', 'id': 11, 'label': '高频词'}];
+      var edges = [{'from': 8, 'label': '', 'to': 5}, {'from': 6, 'label': '', 'to': 5}, {'from': 10, 'label': '', 'to': 5}, {'from': 6, 'label': '', 'to': 11}, {'from': 8, 'label': '', 'to': 11}, {'from': 10, 'label': '', 'to': 11}];
+
+      var container = document.getElementById("VIS_draw");
+
+      var data = {
+        nodes: nodes,
+        edges: edges
+      };
+
+      var options = {
+          nodes: {
+              shape: 'circle',
+              size: 15,
+              font: {
+                  size: 15
+              }
+          },
+          edges: {
+              font: {
+                  size: 10,
+                  align: 'center'
+              },
+              color: 'red',
+              arrows: {
+                  to: {enabled: true, scaleFactor: 1.2}
+              },
+              smooth: {enabled: true}
+          },
+          physics: {
+              enabled: true
+          }
+      };
+
+      var network = new vis.Network(container, data, options);
+
+    </script>
+    </body>
+    </html>
+    
+    <html>
+    <head>
+      <script type="text/javascript" src="VIS/dist/vis.js"></script>
+      <link href="VIS/dist/vis.css" rel="stylesheet" type="text/css">
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    </head>
+    <body>
+
+    <div id="VIS_draw"></div>
+
+    <script type="text/javascript">
+      var nodes = [{'group': 'Event', 'id': 40, 'label': '芯片'}, {'group': 'Event', 'id': 19, 'label': '关键词'}, {'group': 'Event', 'id': 42, 'label': '华为'}, {'group': 'Event', 'id': 77, 'label': '美国'}, {'group': 'Event', 'id': 46, 'label': '领域'}, {'group': 'Event', 'id': 48, 'label': '技术'}, {'group': 'Event', 'id': 64, 'label': '昇腾'}, {'group': 'Event', 'id': 58, 'label': '人工智能'}, {'group': 'Event', 'id': 35, 'label': '表示'}, {'group': 'Event', 'id': 54, 'label': '公司'}, {'group': 'Event', 'id': 18, 'label': '智能'}, {'group': 'Event', 'id': 21, 'label': '推出芯片'}, {'group': 'Event', 'id': 23, 'label': '披露昇腾'}, {'group': 'Event', 'id': 25, 'label': '推进减少'}, {'group': 'Event', 'id': 27, 'label': '减少目标'}, {'group': 'Event', 'id': 29, 'label': '依赖'}, {'group': 'Event', 'id': 70, 'label': '徐直军'}, {'group': 'Event', 'id': 88, 'label': '李峥'}, {'group': 'Event', 'id': 52, 'label': '发布'}, {'group': 'Event', 'id': 39, 'label': '形成挑战'}, {'group': 'Event', 'id': 59, 'label': '高频词'}, {'group': 'Event', 'id': 56, 'label': '处理器'}, {'group': 'Event', 'id': 69, 'label': '地名'}, {'group': 'Event', 'id': 87, 'label': '中国'}, {'group': 'Event', 'id': 71, 'label': '人物'}, {'group': 'Event', 'id': 76, 'label': '华尔街'}, {'group': 'Event', 'id': 89, 'label': '国际关系研究院美国研究所'}, {'group': 'Event', 'id': 73, 'label': '机构'}];
+      var edges = [{'from': 40, 'label': '', 'to': 19}, {'from': 42, 'label': '', 'to': 19}, {'from': 77, 'label': '', 'to': 19}, {'from': 46, 'label': '', 'to': 19}, {'from': 48, 'label': '', 'to': 19}, {'from': 64, 'label': '', 'to': 19}, {'from': 58, 'label': '', 'to': 19}, {'from': 35, 'label': '', 'to': 19}, {'from': 54, 'label': '', 'to': 19}, {'from': 18, 'label': '', 'to': 19}, {'from': 42, 'label': '', 'to': 21}, {'from': 42, 'label': '', 'to': 23}, {'from': 40, 'label': '', 'to': 25}, {'from': 42, 'label': '', 'to': 27}, {'from': 48, 'label': '', 'to': 29}, {'from': 70, 'label': '', 'to': 35}, {'from': 88, 'label': '', 'to': 35}, {'from': 88, 'label': '', 'to': 35}, {'from': 42, 'label': '', 'to': 52}, {'from': 40, 'label': '', 'to': 39}, {'from': 40, 'label': '', 'to': 59}, {'from': 42, 'label': '', 'to': 59}, {'from': 77, 'label': '', 'to': 59}, {'from': 46, 'label': '', 'to': 59}, {'from': 48, 'label': '', 'to': 59}, {'from': 64, 'label': '', 'to': 59}, {'from': 52, 'label': '', 'to': 59}, {'from': 54, 'label': '', 'to': 59}, {'from': 56, 'label': '', 'to': 59}, {'from': 58, 'label': '', 'to': 59}, {'from': 77, 'label': '', 'to': 69}, {'from': 87, 'label': '', 'to': 69}, {'from': 64, 'label': '', 'to': 71}, {'from': 88, 'label': '', 'to': 71}, {'from': 76, 'label': '', 'to': 69}, {'from': 70, 'label': '', 'to': 71}, {'from': 89, 'label': '', 'to': 73}, {'from': 77, 'label': '', 'to': 76}, {'from': 76, 'label': '', 'to': 77}, {'from': 87, 'label': '', 'to': 89}, {'from': 87, 'label': '', 'to': 88}, {'from': 89, 'label': '', 'to': 87}, {'from': 89, 'label': '', 'to': 88}, {'from': 88, 'label': '', 'to': 87}, {'from': 88, 'label': '', 'to': 89}];
+
+      var container = document.getElementById("VIS_draw");
+
+      var data = {
+        nodes: nodes,
+        edges: edges
+      };
+
+      var options = {
+          nodes: {
+              shape: 'circle',
+              size: 15,
+              font: {
+                  size: 15
+              }
+          },
+          edges: {
+              font: {
+                  size: 10,
+                  align: 'center'
+              },
+              color: 'red',
+              arrows: {
+                  to: {enabled: true, scaleFactor: 1.2}
+              },
+              smooth: {enabled: true}
+          },
+          physics: {
+              enabled: true
+          }
+      };
+
+      var network = new vis.Network(container, data, options);
+
+    </script>
+    </body>
+    </html>
+    
